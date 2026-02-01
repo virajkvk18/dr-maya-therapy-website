@@ -11,7 +11,7 @@ export default function Hero() {
       {/* Mobile: Image comes first but is smaller */}
       <div className="order-1 md:order-2 flex justify-center">
         <img 
-          src="/office1.jpeg" 
+          src="/hero.png" 
           alt="Dr. Maya Reynolds" 
           className="w-48 h-48 md:w-full md:h-[500px] object-cover rounded-full md:rounded-t-[200px] md:rounded-b-lg shadow-xl"
         />
