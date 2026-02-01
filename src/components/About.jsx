@@ -4,7 +4,7 @@ export default function About() {
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center">
         <div className="relative flex justify-center">
           <img 
-            src="/office1.jpeg" 
+            src="/maya.png" 
             alt="Dr. Maya's Counseling Space" 
             className="rounded-3xl shadow-lg h-64 w-full md:h-[500px] object-cover"
           />
