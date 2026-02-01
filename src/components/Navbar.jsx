@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react'; // Make sure lucide-react is installed
+import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +11,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-secondary/20">
+    <nav className="bg-white/95 backdrop-blur-sm sticky top-0 z-50 border-b border-secondary/20 shadow-sm">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="flex justify-between items-center h-20">
           
@@ -22,26 +22,28 @@ export default function Navbar() {
             </span>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Desktop Navigation & Button */}
+          <div className="hidden md:flex items-center space-x-10">
             {navLinks.map((link) => (
-              <a key={link.name} href={link.href} className="text-sm uppercase tracking-widest text-primary hover:text-accent transition font-medium">
+              <a key={link.name} href={link.href} className="text-xs uppercase tracking-[0.2em] text-primary hover:text-accent transition font-semibold">
                 {link.name}
               </a>
             ))}
-            <button className="bg-primary text-secondary px-6 py-2 rounded-full text-sm font-bold hover:bg-accent hover:text-white transition uppercase tracking-tighter">
+            <button className="bg-primary text-white px-7 py-3 rounded-full text-xs font-bold hover:bg-accent transition uppercase tracking-widest shadow-md">
               Book a Session
             </button>
           </div>
 
-          {/* Mobile Right Side (Button + Hamburger) */}
-          <div className="md:hidden flex items-center space-x-4">
-            <button className="bg-primary text-secondary px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-tighter">
+          {/* Mobile Navigation - Added "Book" Button Here */}
+          <div className="md:hidden flex items-center space-x-3">
+            {/* This button appears only on mobile next to the menu icon */}
+            <button className="bg-primary text-white px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-tighter shadow-sm active:scale-95 transition">
               Book
             </button>
             <button 
               onClick={() => setIsOpen(!isOpen)}
-              className="text-primary hover:text-accent focus:outline-none"
+              className="text-primary p-1 focus:outline-none"
+              aria-label="Toggle Menu"
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -50,23 +52,22 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Vertical Menu Overlay */}
-      <div className={`md:hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
-        <div className="px-6 pt-2 pb-6 space-y-2 bg-white border-t border-secondary/10 shadow-inner">
+      <div className={`md:hidden bg-white border-t border-secondary/10 overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className="px-8 py-8 flex flex-col space-y-6">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="block py-3 text-base font-medium text-primary hover:text-accent border-b border-secondary/5"
+              className="text-lg font-serif text-primary hover:text-accent border-b border-secondary/5 pb-2"
             >
               {link.name}
             </a>
           ))}
-          <div className="pt-4">
-            <button className="w-full bg-primary text-secondary py-3 rounded-xl font-bold uppercase tracking-widest text-sm">
-              Schedule Consultation
-            </button>
-          </div>
+          {/* Full-width button inside the expanded menu */}
+          <button className="w-full bg-primary text-white py-4 rounded-2xl font-bold uppercase tracking-widest text-sm shadow-lg">
+            Book a Session Now
+          </button>
         </div>
       </div>
     </nav>
